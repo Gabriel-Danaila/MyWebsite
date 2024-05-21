@@ -1,0 +1,426 @@
+/* Author: Gabriel Danaila
+version: 1.0.0
+Copyright: 2023 */
+
+/* ===================================
+
+0. Root variables and minim reset
+1. Header 
+2. Hamburger menu 
+3. Typografy 
+4. Carousel 
+5. @media query
+  
+======================================== */
+
+
+/** == == == == ==     0. Root variables and minim reset    == == == == == **/
+@font-face {
+    font-family: "Equip-Thin";
+    src: url(../fonts/Equip/Hoftype\ -\ Equip-Thin.otf) format("opentype");
+
+}
+
+@font-face {
+    font-family: "Equip-Light";
+    src: url(../fonts/Equip/Hoftype\ -\ Equip-ExtraLight.otf) format("opentype");
+
+}
+
+@font-face {
+    font-family: "Equip-Bold";
+    src: url(../fonts/Equip/Hoftype\ -\ Equip-Bold.otf) format("opentype");
+
+}
+
+:root {
+    --ff-primary: "Roboto";
+    --ff-secondary: "DM Serif Display";
+
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-bold: 700;
+
+    --fs-12: .75rem;
+    --fs-16: 1rem;
+    --fs-18: 1.125rem;
+    --fs-20: 1.25rem;
+    --fs-24: 1.5rem;
+    --fs-32: 2rem;
+    --fs-42: 2.6rem;
+    --fs-48: 3rem;
+    --fs-64: 4rem;
+
+    --clr-text-primary: #000000;
+    --clr-text-secondary: #ffffff;
+    --clr-background-main: #ffffff;
+    --clr-background-btn: #454545;
+    --clr-borders: #686868;
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    /* font-family: "Roboto", sans-serif; */
+    line-height: 1.5;
+    -webkit-text-size-adjust: none;
+    max-width: 1500px;
+    margin: 0 auto;
+    background-color: var(--clr-background-main);
+}
+
+
+img,
+object,
+picture,
+video,
+canvas,
+svg,
+embed {
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+a,
+a:visited,
+a:active {
+    vertical-align: baseline;
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+
+}
+
+ul[role="list"] {
+    list-style: none;
+}
+
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/** == == == == ==     1. Header   == == == == == **/
+
+.header {
+    background-color: #ffffff;
+    padding: 2.5em 4em;
+    z-index: 10;
+}
+
+.navbar-logo {
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-regular);
+    font-size: var(--fs-32);
+    color: var(--clr-text-primary);
+    line-height: normal;
+    font-style: normal;
+    z-index: 11;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-list {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-list li {
+    padding-right: 2.5em;
+}
+
+.navbar-list li:last-child {
+    padding-right: 0;
+}
+
+.navbar-list a {
+    font-weight: var(--fw-regular);
+    line-height: 2rem;
+    padding: .75em 2.5em 0.75em 0;
+    border-right: 1px solid var(--clr-borders);
+}
+
+.navbar-list li:last-child a {
+    padding-right: 0;
+    border: none;
+}
+
+/** == == == == ==     2. Hamburger menu   == == == == == **/
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+    position: absolute;
+    top: 30px;
+    right: 16px;
+
+}
+
+.hamburger span {
+    width: 32px;
+    height: 1px;
+    background: var(--clr-text-primary);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: center;
+}
+
+.navbar-list.open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    background: var(--clr-background-main);
+    z-index: 10;
+}
+
+.navbar-list.open li {
+    padding-right: 0;
+}
+
+.navbar-list.open a {
+    font-size: var(--fs-24);
+    font-weight: var(--fw-light);
+    border: none;
+    padding: 0;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(0.6rem) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-0.7rem) rotate(-45deg);
+}
+
+
+/** == == == == ==     3. Typografy  == == == == == **/
+
+
+.article-section p:first-child {
+    font-family: "Equip-Thin";
+    font-size: var(--fs-42);
+    color: #424242;
+    line-height: 52px;
+    padding-bottom: 1rem
+}
+
+.article-section p:last-child {
+    font-family: "Equip-Light";
+    font-size: var(--fs-18);
+    color: #424242;
+    line-height: 28px;
+}
+
+
+
+
+/** == == == == ==     4. Carousel  == == == == == **/
+
+.article-section {
+    padding-top: 3rem;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 3.5rem 3.5rem 4rem;
+}
+
+.svg-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    max-width: 150px;
+    height: 25px;
+    margin: 0 auto 20px;
+}
+
+.svg-container svg {
+    cursor: pointer;
+}
+
+.left-images-container {
+    width: 570px;
+    height: 575px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: auto
+}
+
+.left-images-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.right-images-container {
+    width: 664px;
+    height: 720px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: auto
+}
+
+.right-images-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.text-container {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+
+/* adding span text colors */
+.row {
+    font-family: "Equip-Light";
+    color: #BCBCBE;
+    display: inline-block;
+    width: 100%;
+}
+
+.active {
+    font-family: "Equip-Bold";
+    color: #424242;
+}
+
+.text-container span[id] {
+    cursor: pointer;
+}
+
+
+/* adding circle around the color buttons */
+.hidden-circle {
+    stroke: transparent;
+}
+
+.show-circle {
+    stroke: black;
+}
+
+/* animation for images slide */
+.right-images-container,
+.left-images-container {
+    position: relative;
+}
+
+
+/* For the fade animation */
+.right-images-container img,
+.left-images-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.right-images-container img.show,
+.left-images-container img.show {
+    opacity: 1;
+}
+
+
+
+
+/** == == == == ==     5. @ media query    == == == == == **/
+@media only screen and (max-width:80em) {
+    .container {
+        flex-direction: column;
+        padding: 1rem 1rem 4rem;
+        gap: 48px;
+    }
+}
+
+@media only screen and (max-width:45em) {
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5em 1em;
+        transition: transform 1s;
+
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar-list {
+        display: none;
+    }
+
+    .article-section {
+        padding: 7rem 1rem 0
+    }
+
+    .article-section p:first-child {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .article-section p:last-child {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .left-images-container {
+        width: 100%;
+
+    }
+
+    .right-images-container {
+        width: 100%;
+
+    }
+}

@@ -1,0 +1,464 @@
+ /* Author: Gabriel Danaila
+version: 1.0.0
+Copyright: 2023 */
+
+ /* ===================================
+
+0. Root variables and minim reset
+1. Header 
+2. Hamburger menu 
+3. Title section
+4. Paralax section
+5. @media query
+  
+======================================== */
+
+
+ /** == == == == ==     0. Root variables and minim reset    == == == == == **/
+
+ @font-face {
+     font-family: "Toyota-Light";
+     src: url(../fonts/Toyota/ToyotaType-Light.ttf) format("truetype");
+ }
+
+
+ :root {
+     --ff-primary: "Roboto";
+     --ff-secondary: "DM Serif Display";
+
+     --fw-light: 300;
+     --fw-regular: 400;
+     --fw-bold: 700;
+
+     --fs-12: .75rem;
+     --fs-16: 1rem;
+     --fs-18: 1.125rem;
+     --fs-20: 1.25rem;
+     --fs-28: 1.75rem;
+     --fs-24: 1.5rem;
+     --fs-32: 2rem;
+     --fs-34: 2.12rem;
+     --fs-40: 2.5rem;
+     --fs-48: 3rem;
+     --fs-56: 3.5rem;
+     --fs-64: 4rem;
+
+     --clr-text-primary: #000000;
+     --clr-text-secondary: #ffffff;
+     --clr-background-main: #f5f4f0;
+     --clr-background-btn: #454545;
+     --clr-borders: #686868;
+
+ }
+
+ *,
+ *::before,
+ *::after {
+     box-sizing: inherit;
+     margin: 0;
+     padding: 0;
+ }
+
+ html {
+     font-size: 100%;
+     height: 100%;
+     box-sizing: border-box;
+     overflow: auto;
+     scroll-behavior: smooth;
+
+
+ }
+
+ body {
+     min-height: 100vh;
+     text-rendering: optimizeSpeed;
+     font-family: "Roboto", sans-serif;
+     line-height: 1.5;
+     -webkit-text-size-adjust: none;
+     background: var(--clr-background-main);
+     max-width: 1700px;
+     margin: 0 auto;
+ }
+
+
+
+ img,
+ object,
+ picture,
+ video,
+ canvas,
+ svg,
+ embed {
+     height: auto;
+     max-width: 100%;
+     display: block;
+ }
+
+ a,
+ a:visited,
+ a:active {
+     vertical-align: baseline;
+     background: transparent;
+     text-decoration: none;
+     color: inherit;
+
+ }
+
+ ul[role="list"] {
+     list-style: none;
+ }
+
+
+ input,
+ button,
+ textarea,
+ select {
+     font: inherit;
+ }
+
+ /** == == == == ==     1. Header   == == == == == **/
+
+ .header {
+     background-color: var(--clr-background-main);
+     padding: 2.5em 4em;
+     z-index: 10;
+ }
+
+ .navbar-logo {
+     font-family: var(--ff-secondary);
+     font-weight: var(--fw-regular);
+     font-size: var(--fs-32);
+     color: var(--clr-text-primary);
+     line-height: normal;
+     font-style: normal;
+     z-index: 11;
+ }
+
+ .navbar {
+     display: flex;
+     justify-content: space-between;
+     max-width: 1700px;
+ }
+
+ .navbar-list {
+     display: flex;
+     align-items: center;
+ }
+
+ .navbar-list li {
+     padding-right: 2.5em;
+ }
+
+ .navbar-list li:last-child {
+     padding-right: 0;
+ }
+
+ .navbar-list a {
+     font-weight: var(--fw-regular);
+     line-height: 2rem;
+     padding: .75em 2.5em 0.75em 0;
+     border-right: 1px solid var(--clr-borders);
+ }
+
+ .navbar-list li:last-child a {
+     padding-right: 0;
+     border: none;
+ }
+
+ /** == == == == ==     2. Hamburger menu   == == == == == **/
+ .hamburger {
+     display: none;
+     flex-direction: column;
+     justify-content: space-around;
+     width: 32px;
+     height: 32px;
+     background: transparent;
+     border: none;
+     cursor: pointer;
+     padding: 0;
+     z-index: 10;
+     position: absolute;
+     top: 30px;
+     right: 16px;
+
+ }
+
+ .hamburger span {
+     width: 32px;
+     height: 1px;
+     background: var(--clr-text-primary);
+     border-radius: 10px;
+     transition: all 0.3s linear;
+     position: relative;
+     transform-origin: center;
+ }
+
+ .navbar-list.open {
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: 100vh;
+     width: 100vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     gap: 48px;
+     background: var(--clr-background-main);
+     z-index: 10;
+     /* animation: fadeOut 0.5s forwards; */
+ }
+
+ .navbar-list.open li {
+     padding-right: 0;
+ }
+
+ .navbar-list.open a {
+     font-size: var(--fs-24);
+     font-weight: var(--fw-light);
+     border: none;
+     padding: 0;
+ }
+
+ .hamburger.open span:nth-child(1) {
+     transform: translateY(0.6rem) rotate(45deg);
+ }
+
+ .hamburger.open span:nth-child(2) {
+     opacity: 0;
+ }
+
+ .hamburger.open span:nth-child(3) {
+     transform: translateY(-0.7rem) rotate(-45deg);
+ }
+
+ /** == == == == ==     3. Title section  == == == == == **/
+ .flex,
+ .section {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+ }
+
+ .text-container {
+     max-width: 670px;
+ }
+
+ .main-title,
+ .parallax-text p:nth-child(1) {
+     font-family: "Toyota-Light";
+     font-size: var(--fs-34);
+     line-height: 40px;
+     padding: 50px 0 32px;
+ }
+
+ .parallax-container p:nth-child(1) {
+     padding-top: 0
+ }
+
+ .project-card-text,
+ .parallax-text p:nth-child(2) {
+     font-family: "Toyota-Light";
+     font-size: var(--fs-16);
+     line-height: 24px;
+     padding-bottom: 80px;
+ }
+
+ .last-text {
+     padding-bottom: 0;
+ }
+
+ /** == == == == ==     4. Parallax section   == == == == == **/
+ /* 1 */
+
+ .parallax-container {
+     position: relative;
+     height: 786px;
+     background-image: url("../img/toyota-module1/img-1-large.png");
+     background-attachment: scroll;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+
+ .parallax-text {
+     position: absolute;
+     transform: translate(30%);
+     color: white;
+     text-align: left;
+     max-width: 480px;
+ }
+
+ /* 2 */
+
+ .parallax-img-container {
+     position: relative;
+     height: 1100px;
+     overflow: hidden;
+ }
+
+ .parallax-layer-front {
+     background-image: url("../img/toyota-module1/img-2-large.png");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+     width: 800px;
+     height: 600px;
+     position: absolute;
+     top: 250px;
+     left: 0px
+ }
+
+ .parallax-layer-back {
+     background-image: url("../img/toyota-module1/img-3-large.png");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+     width: 720px;
+     height: 960px;
+     position: absolute;
+     top: 50px;
+     left: 700px
+ }
+
+
+
+ /* 3 */
+
+
+
+ .main-container {
+     position: relative;
+     height: 170vh;
+ }
+
+ .container {
+     position: sticky;
+     top: 0;
+ }
+
+ .spacer {
+     height: 65vh;
+ }
+
+
+
+ .background-image {
+     position: relative;
+     width: 100%;
+     height: 100vh;
+     background: url("../img/toyota-module1/img-4-large.png") center/cover no-repeat;
+ }
+
+
+
+ .border-layer {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100vh;
+     border: 280px solid var(--clr-background-main);
+     box-sizing: border-box;
+     z-index: 1;
+ }
+
+
+ /** == == == == ==    5. @media query    == == == == ==  **/
+
+ /* for centering parallax 2 on bigger screeen size */
+ @media only screen and (min-width: 1441px) {
+     .parallax-img-container {
+         display: flex;
+         justify-content: center;
+     }
+
+     .parallax-layer-front {
+         left: calc(50% - 350px);
+         transform: translateX(-50%);
+     }
+
+     .parallax-layer-back {
+         left: calc(50% + 350px);
+         transform: translateX(-50%);
+     }
+ }
+
+
+ @media only screen and (max-width:45em) {
+     body {
+         padding-top: 50px;
+     }
+
+     .header {
+         position: fixed;
+         top: 0;
+         left: 0;
+         right: 0;
+         padding: 24px 16px;
+         transition: transform 1s;
+     }
+
+     .hamburger {
+         display: flex;
+     }
+
+     .navbar-list {
+         display: none;
+     }
+
+     .section {
+         padding: 32px 16px 0
+     }
+
+     .project-card-text,
+     .parallax-text p:nth-child(2) {
+         padding-bottom: 50px;
+     }
+
+     /* 1 */
+     .parallax-container {
+         background-image: url("../img/toyota-module1/img-1-small.png");
+     }
+
+     .parallax-text {
+         transform: translate(4%, 50%);
+         width: 350px;
+     }
+
+     /* 2 */
+     .parallax-img-container {
+
+         height: 700px;
+     }
+
+     .parallax-layer-front {
+         width: 380px;
+         height: 304px;
+         transform: translateX(-20%);
+     }
+
+     .parallax-layer-back {
+         width: 440px;
+         height: 570px;
+         transform: translateX(-140%);
+     }
+
+     /* 3 */
+
+     .main-container {
+         height: 170vh;
+     }
+
+     .border-layer {
+         border-top: 50px solid var(--clr-background-main);
+
+     }
+
+     .background-image {
+         background-size: cover;
+     }
+
+ }
